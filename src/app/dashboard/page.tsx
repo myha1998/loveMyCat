@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CatCard from '@/components/dashboard/CatCard';
 import { FaPlus, FaSearch, FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
@@ -46,6 +46,7 @@ const mockCats = [
 ];
 
 export default function Dashboard() {
+  // Keep setCats for future implementation of data fetching from API
   const [cats, setCats] = useState(mockCats);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -62,7 +63,7 @@ export default function Dashboard() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[var(--text-primary)]">Dashboard</h1>
-          <p className="text-gray-600">Manage your cats' health and well-being</p>
+          <p className="text-gray-600">Manage your cats&apos; health and well-being</p>
         </div>
         <Link 
           href="/dashboard/cats/add" 
