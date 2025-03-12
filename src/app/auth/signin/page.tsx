@@ -2,14 +2,13 @@
 
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
-// Remove the router import since it's not being used
 import Link from 'next/link';
+import { FcGoogle } from 'react-icons/fc'; // Import Google icon
 
 export default function SignIn() {
   const { signInWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // Remove the unused router declaration
   
   const handleGoogleSignIn = async () => {
     try {
@@ -26,10 +25,10 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[var(--background-primary)] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-sm">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-[var(--text-primary)]">
             Sign in to Cat Health Tracker
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
@@ -47,13 +46,14 @@ export default function SignIn() {
           <button
             onClick={handleGoogleSignIn}
             disabled={isLoading}
-            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="cursor-pointer group relative flex w-full justify-center items-center rounded-full border border-transparent bg-[var(--accent-blue)] py-3 px-4 text-sm font-medium text-white hover:bg-[#6EB7D4] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
+            <FcGoogle className="mr-2 h-5 w-5 rounded-full" />
             {isLoading ? 'Signing in...' : 'Sign in with Google'}
           </button>
-          
+            
           <div className="text-sm text-center">
-            <Link href="/" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link href="/" className="font-medium text-[var(--accent-pink)] hover:text-[#E29DAA] transition-colors">
               Back to home
             </Link>
           </div>

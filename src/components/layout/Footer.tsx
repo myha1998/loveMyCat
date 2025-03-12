@@ -40,9 +40,11 @@ export default function Footer() {
           </a>
         </div>
         <p className="mt-6 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Cat Health Tracker. All rights reserved.
+          &copy; {new Date().getFullYear()} Cat Health Tracker.
+          <span className="block">All rights reserved. <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">@Ruel</a></span>
         </p>
       </div>
+      {/* https://ruel-saasproject-porfolio.vercel.app/ */}
     </footer>
   );
 }

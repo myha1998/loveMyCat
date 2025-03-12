@@ -21,41 +21,41 @@ export default function Home() {
             
             {/* Category Pills */}
             <div className="mt-8 flex gap-4 justify-center">
-              <button className="px-6 py-2 rounded-full bg-black text-white flex items-center gap-2">
+              <button className="px-6 py-2 rounded-full bg-white text-gray-700 flex items-center gap-2 hover:text-[var(--accent-pink)]">
                 <FaPaw /> Health
               </button>
-              <button className="px-6 py-2 rounded-full bg-white text-gray-700 flex items-center gap-2">
+              <button className="px-6 py-2 rounded-full bg-white text-gray-700 flex items-center gap-2 hover:text-[var(--accent-pink)]">
                 <FaBell /> Reminders
               </button>
-              <button className="px-6 py-2 rounded-full bg-white text-gray-700 flex items-center gap-2">
+              <button className="px-6 py-2 rounded-full bg-white text-gray-700 flex items-center gap-2 hover:text-[var(--accent-pink)]">
                 <FaClipboardList /> Records
               </button>
             </div>
 
             {/* Feature Cards */}
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
                 <div className="h-12 w-12 bg-[#87CEEB]/20 rounded-xl flex items-center justify-center mb-4">
                   <FaClipboardList className="h-5 w-5 text-[#87CEEB] flex-shrink-0" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Health Records</h3>
-                <p className="mt-2 text-gray-600">Keep track of vaccinations, medications, and vet visits.</p>
+                <p className="mt-2 text-gray-600 text-center">Keep track of vaccinations, medications, and vet visits.</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
                 <div className="h-12 w-12 bg-[#87CEEB]/20 rounded-xl flex items-center justify-center mb-4">
                   <FaBell className="h-5 w-5 text-[#87CEEB] flex-shrink-0" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Smart Reminders</h3>
-                <p className="mt-2 text-gray-600">Never miss important appointments or medications.</p>
+                <p className="mt-2 text-gray-600 text-center">Never miss important appointments or medications.</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
                 <div className="h-12 w-12 bg-[#87CEEB]/20 rounded-xl flex items-center justify-center mb-4">
                   <FaChartLine className="h-6 w-6 text-[#87CEEB]" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Health Analytics</h3>
-                <p className="mt-2 text-gray-600">Track and visualize your cat&apos;s health trends over time.</p>
+                <p className="mt-2 text-gray-600 text-center">Track and visualize your cat&apos;s health trends over time.</p>
               </div>
             </div>
 
