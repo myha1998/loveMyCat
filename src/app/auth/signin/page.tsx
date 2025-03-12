@@ -2,15 +2,15 @@
 
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// Remove the router import since it's not being used
 import Link from 'next/link';
 
 export default function SignIn() {
   const { signInWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-
+  // Remove the unused router declaration
+  
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);

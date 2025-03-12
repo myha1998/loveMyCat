@@ -55,7 +55,7 @@ export default function Home() {
                   <FaChartLine className="h-6 w-6 text-[#87CEEB]" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Health Analytics</h3>
-                <p className="mt-2 text-gray-600">Track and visualize your cat's health trends over time.</p>
+                <p className="mt-2 text-gray-600">Track and visualize your cat&apos;s health trends over time.</p>
               </div>
             </div>
 
