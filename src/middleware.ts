@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
+  const response = NextResponse.next({ // Changed 'let' to 'const'
     request: {
       headers: request.headers,
     },
@@ -25,7 +25,9 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const { data: { session } } = await supabase.auth.getSession();
+  // Either remove the unused session or use it
+  await supabase.auth.getSession();
+  // Removed the destructuring that created the unused 'session' variable
 
   return response;
 }

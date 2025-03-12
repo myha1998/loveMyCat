@@ -25,10 +25,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Move these to the top */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Then your custom CSS */
 :root {
   --background-primary: #FFE4E1;
   --text-primary: #1A1A1A;
