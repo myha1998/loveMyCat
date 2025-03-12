@@ -47,6 +47,7 @@ const mockCats = [
 
 export default function Dashboard() {
   // Keep setCats for future implementation of data fetching from API
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cats, setCats] = useState(mockCats);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
