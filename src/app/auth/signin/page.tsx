@@ -1,21 +1,30 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FcGoogle } from 'react-icons/fc'; // Import Google icon
+import { FcGoogle } from 'react-icons/fc';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   
+  // Redirect if user is already authenticated
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user, router]);
+
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
       setError(null);
       await signInWithGoogle();
-      // Note: The actual redirect happens in the callback route
+      // The actual redirect happens in the callback route
     } catch (error) {
       console.error('Error during sign in:', error);
       setError('Failed to sign in with Google. Please try again.');

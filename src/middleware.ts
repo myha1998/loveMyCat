@@ -1,33 +1,43 @@
-import { createServerClient } from '@supabase/ssr';
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
-  const response = NextResponse.next({ // Changed 'let' to 'const'
-    request: {
-      headers: request.headers,
-    },
-  });
+export async function middleware(req: NextRequest) {
+  // Skip middleware for callback routes to prevent redirect loops
+  if (req.nextUrl.pathname.includes('/auth/callback')) {
+    return NextResponse.next();
+  }
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get: (name) => request.cookies.get(name)?.value,
-        set: (name, value, options) => {
-          response.cookies.set({ name, value, ...options });
-        },
-        remove: (name, options) => {
-          response.cookies.set({ name, value: '', ...options });
-        },
-      },
-    }
-  );
+  // Create a Supabase client configured to use cookies
+  const res = NextResponse.next();
+  const supabase = createMiddlewareClient({ req, res });
 
-  // Either remove the unused session or use it
-  await supabase.auth.getSession();
-  // Removed the destructuring that created the unused 'session' variable
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  return response;
+  // If there's no session and the user is trying to access a protected route
+  if (!session && req.nextUrl.pathname.startsWith('/dashboard')) {
+    // Redirect to the signin page
+    const redirectUrl = new URL('/auth/signin', req.url);
+    redirectUrl.searchParams.set('redirectedFrom', req.nextUrl.pathname);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // If user is authenticated and trying to access auth pages, redirect to dashboard
+  if (session && req.nextUrl.pathname.startsWith('/auth/signin')) {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
+  }
+
+  return res;
 }
+
+export const config = {
+  matcher: [
+    '/dashboard/:path*', 
+    '/auth/signin',
+    '/auth/callback',
+    '/onboarding/:path*'
+  ],
+};

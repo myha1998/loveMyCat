@@ -1,4 +1,5 @@
 import { AuthProvider } from '@/context/AuthContext';
+import { OnboardingProvider } from '@/context/OnboardingContext';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          {children}
+          <OnboardingProvider>
+            {children}
+          </OnboardingProvider>
         </AuthProvider>
       </body>
     </html>
